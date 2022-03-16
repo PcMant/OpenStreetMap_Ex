@@ -24,23 +24,29 @@ try {
 }
 
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inicio Pantalla 1</title>
+</head>
+<body>
+    <form method="get" action="pantalla2">
 
-<form method="get" action="pantalla2">
+        <p>
+            <label for="ruta">Quiero restaurantes para comer</label>
+            <select name="ruta" id="ruta">
+                <?php foreach ($resultados as $r) : //Rutas a seleccionar
+                ?>
+                <option value="<?=$r['cod']?>"><?=$r['nombre']?></option>  
+                <?php endforeach; ?>
+            </select>
+        </p>
 
-    <p>
-        <label for="ruta">Quiero restaurantes para comer</label>
-        <select name="ruta" id="ruta">
-            <?php foreach ($resultados as $r) : //Rutas a seleccionar
-            ?>
-              <option value="<?=$r['cod']?>"><?=$r['nombre']?></option>  
-            <?php endforeach; ?>
-        </select>
-    </p>
+        <p>
+            <input type="checkbox" id="restaurantes" name="restaurantes" value="ok" />
+            <label for="restaurantes">Quiero restaurantes para comer</label>
+        </p>
 
-    <p>
-        <input type="checkbox" id="restaurantes" name="restaurantes" value="ok" />
-        <label for="restaurantes">Quiero restaurantes para comer</label>
-    </p>
-
-    <button type="submit">Enviar</button>
-</form>
+        <button type="submit">Enviar</button>
+    </form>
+</body>

@@ -72,21 +72,34 @@ var_dump($resultados);
 // Añadiendo sitios
 $map = new LeafletMaphp();
 
+echo '
+<!DOCTYPE html>\n
+<html>\n
+<head>\n
+';
+// Mostrar esto dentro de la cabecera
 echo $map->showHeadTags();
+echo '
+</head>
+<body>
+';
+
+$color = '';
 
 foreach ($resultados as $r){
 
     
 
     switch (true){
-        case preg_match("/^T$/",$r['cod']) == 1: $color= 'red';
-        case preg_match("/^Z$/",$r['cod']) == 1: $color= 'blue';
-        case preg_match("/^C$/",$r['cod']) == 1: $color= 'gray';
-        case preg_match("/^P$/",$r['cod']) == 1: $color= 'yellow';
-        case preg_match("/^W$/",$r['cod']) == 1: $color= 'brown';
-        case preg_match("/^S$/",$r['cod']) == 1: $color= 'green';
+        case preg_match("/^T$/",$r['cod']) == 1: $color= 'red'; break;
+        case preg_match("/^Z$/",$r['cod']) == 1: $color= 'blue'; break;
+        case preg_match("/^C$/",$r['cod']) == 1: $color= 'gray'; break;
+        case preg_match("/^P$/",$r['cod']) == 1: $color= 'yellow'; break;
+        case preg_match("/^W$/",$r['cod']) == 1: $color= 'brown'; break;
+        case preg_match("/^S$/",$r['cod']) == 1: $color= 'green'; break;
         default: $color = 'white';
     }
+
 
     $map->addCircle($r['latitud'], $r['longitud'], $color);
     //$map->addMarker($r['latitud'], $r['longitud']);
@@ -95,5 +108,8 @@ foreach ($resultados as $r){
 
 // Mostrando mapa
 echo $map->show();
+echo $map->showOnClickDiv();
+
+echo '</body>';
 
 ?>
