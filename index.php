@@ -30,7 +30,7 @@ try {
     <title>Inicio Pantalla 1</title>
 </head>
 <body>
-    <form method="get" action="pantalla2">
+    <form method="get" action="pantalla2.php">
 
         <p>
             <label for="ruta">Quiero restaurantes para comer</label>
