@@ -86,7 +86,7 @@ echo "
 $nombreRuta = !empty($resultadosR[0]['nombre']) ? $resultadosR[0]['nombre'] : '';
 echo "<h1>".$nombreRuta."</h1>";
 
-var_dump($resultados);
+//var_dump($resultados);
 
 // Dar opción al usuario de ver los restaurantes
 echo "<form method='get' action='pantalla2.php'>
@@ -119,8 +119,8 @@ foreach ($resultados as $key => $r){
         $map->addTooltip(LeafletMaphp::CIRCLE, $contadorCirculos, $r[1]);
         
         $web = empty($r['web']) || $r['web'] == null ? '<a>Sin sitio web</a>' : '<a href="'.$r['web'].'" target="_blank">'.$r['web'].'</a>';
-        $info = "pantalla3.php";
-        $t = '<b>Web:</b> '.$web.' / <b>Más info:</b> <a href="'.$info.'" target="_blank">'.$info.'</a>';
+        $info = "pantalla3.php?lat={$r['latitud']}&lon={$r['longitud']}&nombre=$r[1]";
+        $t = '<b>Web:</b> '.$web.' / <b>Más info:</b> <a href="'.$info.'" target="_blank">Haz clic aquí para más información.</a>';
         $map->addOnClickText(LeafletMaphp::CIRCLE, $contadorCirculos, $t);
 
         $contadorCirculos++;
