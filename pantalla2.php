@@ -89,8 +89,9 @@ echo "<h1>".$nombreRuta."</h1>";
 //var_dump($resultados);
 
 // Dar opción al usuario de ver los restaurantes
+$checked = !empty($_GET['restaurantes']) ? "checked='checked'" : '';
 echo "<form method='get' action='pantalla2.php'>
-        <input type='checkbox' id='restaurantes' name='restaurantes' value='ok' />
+        <input type='checkbox' id='restaurantes' name='restaurantes' value='ok' {$checked} />
         <label for='restaurantes'>Quiero restaurantes para comer</label>
         <input type='hidden' name='ruta' value='{$_GET['ruta']}'/>
         <button type='submit'>Enviar</button>
@@ -121,7 +122,15 @@ foreach ($resultados as $key => $r){
         
         $web = empty($r['web']) || $r['web'] == null ? '<a>Sin sitio web</a>' : '<a href="'.$r['web'].'" target="_blank">'.$r['web'].'</a>';
         $info = "pantalla3.php?lat={$r['latitud']}&lon={$r['longitud']}&nombre=$r[1]";
-        $t = '<b>Web:</b> '.$web.' <br/> <b>Más info:</b> <a href="'.$info.'" target="_blank">Haz clic aquí para más información.</a>';
+        $t = "
+            <section>
+                <h4>Lugar seleccionado: {$r[1]}<h4>
+                <ul>
+                    <li><b>Web:</b> <a href='{$web}' target='_blank'>{$web}</a></li> 
+                    <li><b>Más info:</b> <a href='{$info}' target='_blank'>Haz clic aquí para más información.</a></li>
+                </ul>
+            </section>
+            ";
         $map->addOnClickText(LeafletMaphp::CIRCLE, $contadorCirculos, $t);
 
         $contadorCirculos++;

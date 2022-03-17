@@ -33,7 +33,7 @@ try {
     <form method="get" action="pantalla2.php">
 
         <p>
-            <label for="ruta">Quiero restaurantes para comer</label>
+            <label for="ruta">Ruta: </label>
             <select name="ruta" id="ruta">
                 <?php foreach ($resultados as $r) : //Rutas a seleccionar
                 ?>
