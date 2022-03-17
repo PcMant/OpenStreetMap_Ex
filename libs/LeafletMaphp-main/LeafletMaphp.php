@@ -207,7 +207,7 @@ class LeafletMaphp {
         for($i=0; $i<count($this->markers); ++$i) {
             $markertext = "var marker$i = L.marker([{$this->markers[$i]['lat']}, {$this->markers[$i]['lon']}]";
             if(isset($this->markers[$i]['onClick'])) {
-                $markertext .= ", {onClickText: '{$this->markers[$i]['onClick']}'}";
+                $markertext .= ", {onClickText: `{$this->markers[$i]['onClick']}`}";
             }
             $markertext .= ')';
             if(isset($this->markers[$i]['onClick'])) $this->addOnClickFunction($this->markers[$i], $markertext);
@@ -230,7 +230,7 @@ class LeafletMaphp {
                 }
                 if(isset($this->circles[$i]['onClick'])) {
                     if($optionsText != '') $optionsText .= ', ';
-                    $optionsText .= "onClickText: '{$this->circles[$i]['onClick']}'";
+                    $optionsText .= "onClickText: `{$this->circles[$i]['onClick']}`";
                 }
                 $circleText .= ', {'.$optionsText.'}';
             }
@@ -276,7 +276,7 @@ class LeafletMaphp {
                 }
                 if(isset($this->polygons[$i]['onClick'])) {
                     if($optionsText != '') $optionsText .= ', ';
-                    $optionsText .= "onClickText: '{$this->polygons[$i]['onClick']}'";
+                    $optionsText .= "onClickText: `{$this->polygons[$i]['onClick']}`";
                 }
                 $polygonText .= ', {'.$optionsText.'}';
             }
@@ -317,10 +317,10 @@ class LeafletMaphp {
     private function addText(array $item, string &$itemText) {
         
         if(isset($item['toolTip'])) {
-            $itemText .= ".bindTooltip('{$item['toolTip']}')";
+            $itemText .= ".bindTooltip(`{$item['toolTip']}`)";
         }
         if(isset($item['popUp'])) {
-            $itemText .= ".bindPopup('{$item['popUp']}')";
+            $itemText .= ".bindPopup(`{$item['popUp']}`)";
         }
     }
 

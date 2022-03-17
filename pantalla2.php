@@ -115,12 +115,12 @@ foreach ($resultados as $key => $r){
             default: $color = 'white';
         }
 
-        $map->addCircle($r['latitud'], $r['longitud'], $color);
-        $map->addTooltip(LeafletMaphp::CIRCLE, $contadorCirculos, $r[1]);
+        $map->addCircle((float) $r['latitud'], (float) $r['longitud'], $color);
+        $map->addTooltip(LeafletMaphp::CIRCLE, $contadorCirculos, (string) $r[1]);
         
         $web = empty($r['web']) || $r['web'] == null ? '<a>Sin sitio web</a>' : '<a href="'.$r['web'].'" target="_blank">'.$r['web'].'</a>';
         $info = "pantalla3.php?lat={$r['latitud']}&lon={$r['longitud']}&nombre=$r[1]";
-        $t = '<b>Web:</b> '.$web.' / <b>Más info:</b> <a href="'.$info.'" target="_blank">Haz clic aquí para más información.</a>';
+        $t = '<b>Web:</b> '.$web.' <br/> <b>Más info:</b> <a href="'.$info.'" target="_blank">Haz clic aquí para más información.</a>';
         $map->addOnClickText(LeafletMaphp::CIRCLE, $contadorCirculos, $t);
 
         $contadorCirculos++;
