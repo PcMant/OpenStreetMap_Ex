@@ -31,7 +31,7 @@ try {
     die();
 }
 
-//var_dump($resultadosR);
+// var_dump($resultadosR);
 
 $pdo = null;
 

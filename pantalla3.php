@@ -52,14 +52,14 @@ $map->addPolygon($result['geojson']['coordinates'][0]);
 }else if ($result['osm_type'] == 'relation') {
     $geoJSON_url = "http://polygons.openstreetmap.fr/get_geojson.py?id={$result['osm_id']}&params=0";
 
-    // if(preg_match('/^None $/',file_get_contents($geoJSON_url))){
+    if(preg_match('/^None $/',file_get_contents($geoJSON_url))){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
     curl_setopt($ch, CURLOPT_URL, $geoJSON_url);
     $geoJSON = curl_exec($ch);
     curl_close($ch);
     $map->addGeoJSON($geoJSON);
-    // }
+    }
 }
     
 
