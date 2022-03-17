@@ -68,7 +68,7 @@ echo "<h1>{$result['display_name']}</h1>";
 // Muestreo del mapa
 echo $map->show();
 
-var_dump($result);
+//var_dump($result);
 
 // Mostrando los datos de debajo del mapa
 echo"
