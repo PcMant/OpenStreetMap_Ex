@@ -50,16 +50,16 @@ $map->addPopUp(LeafletMaphp::MARKER,0, $_GET['lat'].",".$_GET['lon']);
 if((isset($result['geojson'])) && ($result['geojson']['type'] == 'Polygon')) {
 $map->addPolygon($result['geojson']['coordinates'][0]);
 }else if ($result['osm_type'] == 'relation') {
-    $geoJSON_url = "http://polygons.openstreetmap.fr/get_geojson.py?id={$result['osm_id']}";
+    $geoJSON_url = "http://polygons.openstreetmap.fr/get_geojson.py?id={$result['osm_id']}&params=0";
 
-    if(preg_match('/^None $/',file_get_contents($geoJSON_url))){
+    // if(preg_match('/^None $/',file_get_contents($geoJSON_url))){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
     curl_setopt($ch, CURLOPT_URL, $geoJSON_url);
     $geoJSON = curl_exec($ch);
     curl_close($ch);
     $map->addGeoJSON($geoJSON);
-    }
+    // }
 }
     
 
@@ -68,7 +68,7 @@ echo "<h1>{$result['display_name']}</h1>";
 // Muestreo del mapa
 echo $map->show();
 
-//var_dump($result);
+// var_dump($result);
 
 // Mostrando los datos de debajo del mapa
 echo"
