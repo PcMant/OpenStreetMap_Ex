@@ -109,10 +109,12 @@ class LeafletMaphp {
         switch($element_type) {
             case self::MARKER:
                 if(!isset($this->markers[$element_id])) throw new LeafletMaphpException('Wrong marker ID');
+                if(isset($this->markers[$element_id]['toolTip'])) throw new LeafletMaphpException("Ya existe texto para el elemento {$element_type} con la id {$element_id}");
                 $this->markers[$element_id]['toolTip'] = $toolTip;
                 break;
             case self::CIRCLE:
                 if(!isset($this->circles[$element_id])) throw new LeafletMaphpException('Wrong circle ID');
+                if(isset($this->circles[$element_id]['toolTip'])) throw new LeafletMaphpException("Ya existe texto para el elemento {$element_type} con la id {$element_id}");
                 $this->circles[$element_id]['toolTip'] = $toolTip;
                 break;
             case self::POLYGON:
