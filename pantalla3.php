@@ -47,17 +47,21 @@ $map->addMarker((float) $_GET['lat'],(float) $_GET['lon']);
 $map->addPopUp(LeafletMaphp::MARKER,0, $_GET['lat'].",".$_GET['lon']);
 
 // Añadir perímetro del lugar en el mapa siempre que se pueda
-if(isset($result['geojson']) && $result['geojson']['type'] == 'Polygon'){
-    $map->addPolygon($result['geojson']['cordinates'][0]);
-}elseif($result['osm_type'] == 'relation'){
-    $geoJSON_url ="http://polygons.openstreetmap.fr/get_geojson.py?id={$place['osm_id']}";
+if((isset($result['geojson'])) && ($result['geojson']['type'] == 'Polygon')) {
+$map->addPolygon($result['geojson']['coordinates'][0]);
+}else if ($result['osm_type'] == 'relation') {
+    $geoJSON_url = "http://polygons.openstreetmap.fr/get_geojson.py?id={$result['osm_id']}";
+
+    if(preg_match('/^None $/',file_get_contents($geoJSON_url))){
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
     curl_setopt($ch, CURLOPT_URL, $geoJSON_url);
     $geoJSON = curl_exec($ch);
     curl_close($ch);
     $map->addGeoJSON($geoJSON);
+    }
 }
+    
 
 echo "<h1>{$result['display_name']}</h1>";
 

@@ -117,7 +117,7 @@ foreach ($resultados as $key => $r){
 
         $map->addCircle((float) $r['latitud'], (float) $r['longitud'], $color);
         $map->addTooltip(LeafletMaphp::CIRCLE, $contadorCirculos, (string) $r[1]);
-        $map->addTooltip(LeafletMaphp::CIRCLE, $contadorCirculos, (string) $r[1]);
+        // $map->addTooltip(LeafletMaphp::CIRCLE, $contadorCirculos, (string) $r[1]); /*Comentar/descomentar para comprobar la excepción de texto ya existente*/
         
         $web = empty($r['web']) || $r['web'] == null ? '<a>Sin sitio web</a>' : '<a href="'.$r['web'].'" target="_blank">'.$r['web'].'</a>';
         $info = "pantalla3.php?lat={$r['latitud']}&lon={$r['longitud']}&nombre=$r[1]";
@@ -132,6 +132,7 @@ foreach ($resultados as $key => $r){
         $map->addMarker($r['latitud'], $r['longitud']);
 
         $map->addTooltip(LeafletMaphp::MARKER, $contadorMarcas, $r[1]);
+        // $map->addTooltip(LeafletMaphp::MARKER, $contadorMarcas, $r[1]); /*Comentar/descomentar para comprobar la excepción de texto ya existente*/
 
         $contadorMarcas++;
     }
